@@ -149,7 +149,7 @@ files.
 ;;;
 ;;; Org Mode
 ;;;
-(add-to-list 'load-path (expand-file-name "~/git/org-mode/lisp"))
+; (add-to-list 'load-path (expand-file-name "~/git/org-mode/lisp"))
 (add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))
 (require 'org)
 ;;
@@ -165,9 +165,9 @@ files.
 ;; can override the document path by setting your path in the variable
 ;; org-mode-user-lisp-path
 ;;
-(if (boundp 'org-mode-user-lisp-path)
-    (add-to-list 'load-path org-mode-user-lisp-path)
-  (add-to-list 'load-path (expand-file-name "~/git/org-mode/lisp")))
+;(if (boundp 'org-mode-user-lisp-path)
+;    (add-to-list 'load-path org-mode-user-lisp-path)
+;  (add-to-list 'load-path (expand-file-name "~/git/org-mode/lisp")))
 
 (add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))
 (require 'org)
@@ -244,22 +244,22 @@ See [[#Publishing][Publishing and Exporting]] for more details.
 Here is my current =org-agenda-files= setup.
 #+header: :tangle no
 #+begin_src emacs-lisp
-(setq org-agenda-files (quote ("~/git/org"
-                               "~/git/org/client1"
-                               "~/git/client2")))
+;(setq org-agenda-files (quote ("~/git/org"
+;                               "~/git/org/client1"
+;                               "~/git/client2")))
 #+end_src
 
-#+header: :tangle yes
+#+header: :tangle no
 #+begin_src emacs-lisp :exports none
 ;; The following setting is different from the document so that you
 ;; can override the document org-agenda-files by setting your
 ;; org-agenda-files in the variable org-user-agenda-files
 ;;
-(if (boundp 'org-user-agenda-files)
-    (setq org-agenda-files org-user-agenda-files)
-  (setq org-agenda-files (quote ("~/git/org"
-                               "~/git/org/client1"
-                               "~/git/client2"))))
+;(if (boundp 'org-user-agenda-files)
+;    (setq org-agenda-files org-user-agenda-files)
+;  (setq org-agenda-files (quote ("~/git/org"
+;                               "~/git/org/client1"
+;                               "~/git/client2"))))
 #+end_src
 
 =org-mode= manages the =org-agenda-files= variable automatically using
@@ -399,7 +399,7 @@ Here is the keybinding setup in lisp:
 (global-set-key (kbd "<f7>") 'bh/set-truncate-lines)
 (global-set-key (kbd "<f8>") 'org-cycle-agenda-files)
 (global-set-key (kbd "<f9> <f9>") 'bh/show-org-agenda)
-(global-set-key (kbd "<f9> b") 'bbdb)
+;(global-set-key (kbd "<f9> b") 'bbdb)
 (global-set-key (kbd "<f9> c") 'calendar)
 (global-set-key (kbd "<f9> f") 'boxquote-insert-file)
 (global-set-key (kbd "<f9> g") 'gnus)
@@ -422,7 +422,7 @@ Here is the keybinding setup in lisp:
 (global-set-key (kbd "<f9> SPC") 'bh/clock-in-last-task)
 (global-set-key (kbd "C-<f9>") 'previous-buffer)
 (global-set-key (kbd "M-<f9>") 'org-toggle-inline-images)
-(global-set-key (kbd "C-x n r") 'narrow-to-region)
+;(global-set-key (kbd "C-x n r") 'narrow-to-region)
 (global-set-key (kbd "C-<f10>") 'next-buffer)
 (global-set-key (kbd "<f11>") 'org-clock-goto)
 (global-set-key (kbd "C-<f11>") 'org-clock-in)
@@ -704,29 +704,29 @@ Here is my setup for org-capture
 
 #+header: :tangle yes
 #+begin_src emacs-lisp
-(setq org-directory "~/git/org")
-(setq org-default-notes-file "~/git/org/refile.org")
+;(setq org-directory "~/git/org")
+;(setq org-default-notes-file "~/git/org/refile.org")
 
 ;; I use C-c c to start capture mode
 (global-set-key (kbd "C-c c") 'org-capture)
 
 ;; Capture templates for: TODO tasks, Notes, appointments, phone calls, meetings, and org-protocol
 (setq org-capture-templates
-      (quote (("t" "todo" entry (file "~/git/org/refile.org")
+      (quote (("t" "todo" entry (file "~/org/refile.org")
                "* TODO %?\n%U\n%a\n" :clock-in t :clock-resume t)
-              ("r" "respond" entry (file "~/git/org/refile.org")
+              ("r" "respond" entry (file "~/org/refile.org")
                "* NEXT Respond to %:from on %:subject\nSCHEDULED: %t\n%U\n%a\n" :clock-in t :clock-resume t :immediate-finish t)
-              ("n" "note" entry (file "~/git/org/refile.org")
+              ("n" "note" entry (file "~/org/refile.org")
                "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)
               ("j" "Journal" entry (file+datetree "~/git/org/diary.org")
                "* %?\n%U\n" :clock-in t :clock-resume t)
-              ("w" "org-protocol" entry (file "~/git/org/refile.org")
+              ("w" "org-protocol" entry (file "~/org/refile.org")
                "* TODO Review %c\n%U\n" :immediate-finish t)
-              ("m" "Meeting" entry (file "~/git/org/refile.org")
+              ("m" "Meeting" entry (file "~/org/refile.org")
                "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t)
-              ("p" "Phone call" entry (file "~/git/org/refile.org")
+              ("p" "Phone call" entry (file "~/org/refile.org")
                "* PHONE %? :PHONE:\n%U" :clock-in t :clock-resume t)
-              ("h" "Habit" entry (file "~/git/org/refile.org")
+              ("h" "Habit" entry (file "~/org/refile.org")
                "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"%<<%Y-%m-%d %a .+1d/3d>>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
 #+end_src
 
@@ -799,7 +799,7 @@ since it's a new task and I get a buffer like this:
 ,* TODO 
   [2010-08-05 Thu 21:06]
 
-  [[file:~/git/org-mode-doc/org-mode.org::*Capture%20Tasks%20is%20all%20about%20being%20FAST][Capture Tasks is all about being FAST]]
+  [[file:~/h/orgflow/org-mode.org::*Capture%20Tasks%20is%20all%20about%20being%20FAST][Capture Tasks is all about being FAST]]
 #+end_src
 
 Enter the details of the TODO item and =C-c C-c= to file it away in
@@ -2205,49 +2205,50 @@ followed by the phone-call related lookup functions.
 ;; Capture templates for: TODO tasks, Notes, appointments, phone calls, and org-protocol
 (setq org-capture-templates
       (quote (...
-              ("p" "Phone call" entry (file "~/git/org/refile.org")
+              ("p" "Phone call" entry (file "~/org/refile.org")
                "* PHONE %? :PHONE:\n%U" :clock-in t :clock-resume t)
               ...)))
 #+end_src
 
 #+header: :tangle yes
 #+begin_src emacs-lisp
-(require 'bbdb)
-(require 'bbdb-com)
-
-(global-set-key (kbd "<f9> p") 'bh/phone-call)
-
-;;
-;; Phone capture template handling with BBDB lookup
-;; Adapted from code by Gregory J. Grubbs
-(defun bh/phone-call ()
-  "Return name and company info for caller from bbdb lookup"
-  (interactive)
-  (let* (name rec caller)
-    (setq name (completing-read "Who is calling? "
-                                (bbdb-hashtable)
-                                'bbdb-completion-predicate
-                                'confirm))
-    (when (> (length name) 0)
-      ; Something was supplied - look it up in bbdb
-      (setq rec
-            (or (first
-                 (or (bbdb-search (bbdb-records) name nil nil)
-                     (bbdb-search (bbdb-records) nil name nil)))
-                name)))
-
-    ; Build the bbdb link if we have a bbdb record, otherwise just return the name
-    (setq caller (cond ((and rec (vectorp rec))
-                        (let ((name (bbdb-record-name rec))
-                              (company (bbdb-record-company rec)))
-                          (concat "[[bbdb:"
-                                  name "]["
-                                  name "]]"
-                                  (when company
-                                    (concat " - " company)))))
-                       (rec)
-                       (t "NameOfCaller")))
-    (insert caller)))  
+; commenting because I'm not using bbdb yet.  Might later.
+;(require 'bbdb)
+;(require 'bbdb-com)
+;
+;(global-set-key (kbd "<f9> p") 'bh/phone-call)
+;
+;;;
+;;; Phone capture template handling with BBDB lookup
+;;; Adapted from code by Gregory J. Grubbs
+;(defun bh/phone-call ()
+;  "Return name and company info for caller from bbdb lookup"
+;  (interactive)
+;  (let* (name rec caller)
+;    (setq name (completing-read "Who is calling? "
+;                                (bbdb-hashtable)
+;                                'bbdb-completion-predicate
+;                                'confirm))
+;    (when (> (length name) 0)
+;      ; Something was supplied - look it up in bbdb
+;      (setq rec
+;            (or (first
+;                 (or (bbdb-search (bbdb-records) name nil nil)
+;                     (bbdb-search (bbdb-records) nil name nil)))
+;                name)))
+;
+;    ; Build the bbdb link if we have a bbdb record, otherwise just return the name
+;    (setq caller (cond ((and rec (vectorp rec))
+;                        (let ((name (bbdb-record-name rec))
+;                              (company (bbdb-record-company rec)))
+;                          (concat "[[bbdb:"
+;                                  name "]["
+;                                  name "]]"
+;                                  (when company
+;                                    (concat " - " company)))))
+;                       (rec)
+;                       (t "NameOfCaller")))
+;    (insert caller)))  
 #+end_src
 * GTD stuff
 :PROPERTIES:
@@ -2859,7 +2860,7 @@ on your system.
 
 #+header: :tangle yes
 #+begin_src emacs-lisp
-(setq org-ditaa-jar-path "~/git/org-mode/contrib/scripts/ditaa.jar")
+;(setq org-ditaa-jar-path "~/git/org-mode/contrib/scripts/ditaa.jar")
 (setq org-plantuml-jar-path "~/java/plantuml.jar")
 
 (add-hook 'org-babel-after-execute-hook 'bh/display-inline-images 'append)
@@ -3208,162 +3209,162 @@ Here's my publishing setup:
 ; doc          - http://doc.norang.ca/
 ; org-mode-doc - http://doc.norang.ca/org-mode.html and associated files
 ; org          - miscellaneous todo lists for publishing
-(setq org-publish-project-alist
+;(setq org-publish-project-alist
       ;
       ; http://www.norang.ca/  (norang website)
       ; norang-org are the org-files that generate the content
       ; norang-extra are images and css files that need to be included
       ; norang is the top-level project that gets published
-      (quote (("norang-org"
-               :base-directory "~/git/www.norang.ca"
-               :publishing-directory "/ssh:www-data@www:~/www.norang.ca/htdocs"
-               :recursive t
-               :table-of-contents nil
-               :base-extension "org"
-               :publishing-function org-html-publish-to-html
-               :style-include-default nil
-               :section-numbers nil
-               :table-of-contents nil
-               :html-head "<link rel=\"stylesheet\" href=\"norang.css\" type=\"text/css\" />"
-               :author-info nil
-               :creator-info nil)
-              ("norang-extra"
-               :base-directory "~/git/www.norang.ca/"
-               :publishing-directory "/ssh:www-data@www:~/www.norang.ca/htdocs"
-               :base-extension "css\\|pdf\\|png\\|jpg\\|gif"
-               :publishing-function org-publish-attachment
-               :recursive t
-               :author nil)
-              ("norang"
-               :components ("norang-org" "norang-extra"))
-              ;
-              ; http://doc.norang.ca/  (norang website)
-              ; doc-org are the org-files that generate the content
-              ; doc-extra are images and css files that need to be included
-              ; doc is the top-level project that gets published
-              ("doc-org"
-               :base-directory "~/git/doc.norang.ca/"
-               :publishing-directory "/ssh:www-data@www:~/doc.norang.ca/htdocs"
-               :recursive nil
-               :section-numbers nil
-               :table-of-contents nil
-               :base-extension "org"
-               :publishing-function (org-html-publish-to-html org-org-publish-to-org)
-               :style-include-default nil
-               :html-head "<link rel=\"stylesheet\" href=\"/org.css\" type=\"text/css\" />"
-               :author-info nil
-               :creator-info nil)
-              ("doc-extra"
-               :base-directory "~/git/doc.norang.ca/"
-               :publishing-directory "/ssh:www-data@www:~/doc.norang.ca/htdocs"
-               :base-extension "css\\|pdf\\|png\\|jpg\\|gif"
-               :publishing-function org-publish-attachment
-               :recursive nil
-               :author nil)
-              ("doc"
-               :components ("doc-org" "doc-extra"))
-              ("doc-private-org"
-               :base-directory "~/git/doc.norang.ca/private"
-               :publishing-directory "/ssh:www-data@www:~/doc.norang.ca/htdocs/private"
-               :recursive nil
-               :section-numbers nil
-               :table-of-contents nil
-               :base-extension "org"
-               :publishing-function (org-html-publish-to-html org-org-publish-to-org)
-               :style-include-default nil
-               :html-head "<link rel=\"stylesheet\" href=\"/org.css\" type=\"text/css\" />"
-               :auto-sitemap t
-               :sitemap-filename "index.html"
-               :sitemap-title "Norang Private Documents"
-               :sitemap-style "tree"
-               :author-info nil
-               :creator-info nil)
-              ("doc-private-extra"
-               :base-directory "~/git/doc.norang.ca/private"
-               :publishing-directory "/ssh:www-data@www:~/doc.norang.ca/htdocs/private"
-               :base-extension "css\\|pdf\\|png\\|jpg\\|gif"
-               :publishing-function org-publish-attachment
-               :recursive nil
-               :author nil)
-              ("doc-private"
-               :components ("doc-private-org" "doc-private-extra"))
-              ;
-              ; Miscellaneous pages for other websites
-              ; org are the org-files that generate the content
-              ("org-org"
-               :base-directory "~/git/org/"
-               :publishing-directory "/ssh:www-data@www:~/org"
-               :recursive t
-               :section-numbers nil
-               :table-of-contents nil
-               :base-extension "org"
-               :publishing-function org-html-publish-to-html
-               :style-include-default nil
-               :html-head "<link rel=\"stylesheet\" href=\"/org.css\" type=\"text/css\" />"
-               :author-info nil
-               :creator-info nil)
-              ;
-              ; http://doc.norang.ca/  (norang website)
-              ; org-mode-doc-org this document
-              ; org-mode-doc-extra are images and css files that need to be included
-              ; org-mode-doc is the top-level project that gets published
-              ; This uses the same target directory as the 'doc' project
-              ("org-mode-doc-org"
-               :base-directory "~/git/org-mode-doc/"
-               :publishing-directory "/ssh:www-data@www:~/doc.norang.ca/htdocs"
-               :recursive t
-               :section-numbers nil
-               :table-of-contents nil
-               :base-extension "org"
-               :publishing-function (org-html-publish-to-html)
-               :plain-source t
-               :htmlized-source t
-               :style-include-default nil
-               :html-head "<link rel=\"stylesheet\" href=\"/org.css\" type=\"text/css\" />"
-               :author-info nil
-               :creator-info nil)
-              ("org-mode-doc-extra"
-               :base-directory "~/git/org-mode-doc/"
-               :publishing-directory "/ssh:www-data@www:~/doc.norang.ca/htdocs"
-               :base-extension "css\\|pdf\\|png\\|jpg\\|gif\\|org"
-               :publishing-function org-publish-attachment
-               :recursive t
-               :author nil)
-              ("org-mode-doc"
-               :components ("org-mode-doc-org" "org-mode-doc-extra"))
-              ;
-              ; http://doc.norang.ca/  (norang website)
-              ; org-mode-doc-org this document
-              ; org-mode-doc-extra are images and css files that need to be included
-              ; org-mode-doc is the top-level project that gets published
-              ; This uses the same target directory as the 'doc' project
-              ("tmp-org"
-               :base-directory "/tmp/publish/"
-               :publishing-directory "/ssh:www-data@www:~/www.norang.ca/htdocs/tmp"
-               :recursive t
-               :section-numbers nil
-               :table-of-contents nil
-               :base-extension "org"
-               :publishing-function (org-html-publish-to-html org-org-publish-to-org)
-               :html-head "<link rel=\"stylesheet\" href=\"http://doc.norang.ca/org.css\" type=\"text/css\" />"
-               :plain-source t
-               :htmlized-source t
-               :style-include-default nil
-               :auto-sitemap t
-               :sitemap-filename "index.html"
-               :sitemap-title "Test Publishing Area"
-               :sitemap-style "tree"
-               :author-info t
-               :creator-info t)
-              ("tmp-extra"
-               :base-directory "/tmp/publish/"
-               :publishing-directory "/ssh:www-data@www:~/www.norang.ca/htdocs/tmp"
-               :base-extension "css\\|pdf\\|png\\|jpg\\|gif"
-               :publishing-function org-publish-attachment
-               :recursive t
-               :author nil)
-              ("tmp"
-               :components ("tmp-org" "tmp-extra")))))
+;      (quote (("norang-org"
+;               :base-directory "~/git/www.norang.ca"
+;               :publishing-directory "/ssh:www-data@www:~/www.norang.ca/htdocs"
+;               :recursive t
+;               :table-of-contents nil
+;               :base-extension "org"
+;               :publishing-function org-html-publish-to-html
+;               :style-include-default nil
+;               :section-numbers nil
+;               :table-of-contents nil
+;               :html-head "<link rel=\"stylesheet\" href=\"norang.css\" type=\"text/css\" />"
+;               :author-info nil
+;               :creator-info nil)
+;              ("norang-extra"
+;               :base-directory "~/git/www.norang.ca/"
+;               :publishing-directory "/ssh:www-data@www:~/www.norang.ca/htdocs"
+;               :base-extension "css\\|pdf\\|png\\|jpg\\|gif"
+;               :publishing-function org-publish-attachment
+;               :recursive t
+;               :author nil)
+;              ("norang"
+;               :components ("norang-org" "norang-extra"))
+;              ;
+;              ; http://doc.norang.ca/  (norang website)
+;              ; doc-org are the org-files that generate the content
+;              ; doc-extra are images and css files that need to be included
+;              ; doc is the top-level project that gets published
+;              ("doc-org"
+;               :base-directory "~/git/doc.norang.ca/"
+;               :publishing-directory "/ssh:www-data@www:~/doc.norang.ca/htdocs"
+;               :recursive nil
+;               :section-numbers nil
+;               :table-of-contents nil
+;               :base-extension "org"
+;               :publishing-function (org-html-publish-to-html org-org-publish-to-org)
+;               :style-include-default nil
+;               :html-head "<link rel=\"stylesheet\" href=\"/org.css\" type=\"text/css\" />"
+;               :author-info nil
+;               :creator-info nil)
+;              ("doc-extra"
+;               :base-directory "~/git/doc.norang.ca/"
+;               :publishing-directory "/ssh:www-data@www:~/doc.norang.ca/htdocs"
+;               :base-extension "css\\|pdf\\|png\\|jpg\\|gif"
+;               :publishing-function org-publish-attachment
+;               :recursive nil
+;               :author nil)
+;              ("doc"
+;               :components ("doc-org" "doc-extra"))
+;              ("doc-private-org"
+;               :base-directory "~/git/doc.norang.ca/private"
+;               :publishing-directory "/ssh:www-data@www:~/doc.norang.ca/htdocs/private"
+;               :recursive nil
+;               :section-numbers nil
+;               :table-of-contents nil
+;               :base-extension "org"
+;               :publishing-function (org-html-publish-to-html org-org-publish-to-org)
+;               :style-include-default nil
+;               :html-head "<link rel=\"stylesheet\" href=\"/org.css\" type=\"text/css\" />"
+;               :auto-sitemap t
+;               :sitemap-filename "index.html"
+;               :sitemap-title "Norang Private Documents"
+;               :sitemap-style "tree"
+;               :author-info nil
+;               :creator-info nil)
+;              ("doc-private-extra"
+;               :base-directory "~/git/doc.norang.ca/private"
+;               :publishing-directory "/ssh:www-data@www:~/doc.norang.ca/htdocs/private"
+;               :base-extension "css\\|pdf\\|png\\|jpg\\|gif"
+;               :publishing-function org-publish-attachment
+;               :recursive nil
+;               :author nil)
+;              ("doc-private"
+;               :components ("doc-private-org" "doc-private-extra"))
+;              ;
+;              ; Miscellaneous pages for other websites
+;              ; org are the org-files that generate the content
+;              ("org-org"
+;               :base-directory "~/git/org/"
+;               :publishing-directory "/ssh:www-data@www:~/org"
+;               :recursive t
+;               :section-numbers nil
+;               :table-of-contents nil
+;               :base-extension "org"
+;               :publishing-function org-html-publish-to-html
+;               :style-include-default nil
+;               :html-head "<link rel=\"stylesheet\" href=\"/org.css\" type=\"text/css\" />"
+;               :author-info nil
+;               :creator-info nil)
+;              ;
+;              ; http://doc.norang.ca/  (norang website)
+;              ; org-mode-doc-org this document
+;              ; org-mode-doc-extra are images and css files that need to be included
+;              ; org-mode-doc is the top-level project that gets published
+;              ; This uses the same target directory as the 'doc' project
+;              ("org-mode-doc-org"
+;               :base-directory "~/git/org-mode-doc/"
+;               :publishing-directory "/ssh:www-data@www:~/doc.norang.ca/htdocs"
+;               :recursive t
+;               :section-numbers nil
+;               :table-of-contents nil
+;               :base-extension "org"
+;               :publishing-function (org-html-publish-to-html)
+;               :plain-source t
+;               :htmlized-source t
+;               :style-include-default nil
+;               :html-head "<link rel=\"stylesheet\" href=\"/org.css\" type=\"text/css\" />"
+;               :author-info nil
+;               :creator-info nil)
+;              ("org-mode-doc-extra"
+;               :base-directory "~/git/org-mode-doc/"
+;               :publishing-directory "/ssh:www-data@www:~/doc.norang.ca/htdocs"
+;               :base-extension "css\\|pdf\\|png\\|jpg\\|gif\\|org"
+;               :publishing-function org-publish-attachment
+;               :recursive t
+;               :author nil)
+;              ("org-mode-doc"
+;               :components ("org-mode-doc-org" "org-mode-doc-extra"))
+;              ;
+;              ; http://doc.norang.ca/  (norang website)
+;              ; org-mode-doc-org this document
+;              ; org-mode-doc-extra are images and css files that need to be included
+;              ; org-mode-doc is the top-level project that gets published
+;              ; This uses the same target directory as the 'doc' project
+;              ("tmp-org"
+;               :base-directory "/tmp/publish/"
+;               :publishing-directory "/ssh:www-data@www:~/www.norang.ca/htdocs/tmp"
+;               :recursive t
+;               :section-numbers nil
+;               :table-of-contents nil
+;               :base-extension "org"
+;               :publishing-function (org-html-publish-to-html org-org-publish-to-org)
+;               :html-head "<link rel=\"stylesheet\" href=\"http://doc.norang.ca/org.css\" type=\"text/css\" />"
+;               :plain-source t
+;               :htmlized-source t
+;               :style-include-default nil
+;               :auto-sitemap t
+;               :sitemap-filename "index.html"
+;               :sitemap-title "Test Publishing Area"
+;               :sitemap-style "tree"
+;               :author-info t
+;               :creator-info t)
+;              ("tmp-extra"
+;               :base-directory "/tmp/publish/"
+;               :publishing-directory "/ssh:www-data@www:~/www.norang.ca/htdocs/tmp"
+;               :base-extension "css\\|pdf\\|png\\|jpg\\|gif"
+;               :publishing-function org-publish-attachment
+;               :recursive t
+;               :author nil)
+;              ("tmp"
+;               :components ("tmp-org" "tmp-extra")))))
 
 ; I'm lazy and don't want to remember the name of the project to publish when I modify
 ; a file that is part of a project.  So this function saves the file, and publishes
@@ -4234,7 +4235,7 @@ you're not supposed to be working.
 #+header: :tangle yes
 #+begin_src emacs-lisp
 (setq org-agenda-include-diary nil)
-(setq org-agenda-diary-file "~/git/org/diary.org")
+(setq org-agenda-diary-file "~/org/diary.org")
 #+end_src
 
 The diary file keeps =date-tree= entries created by the capture mode
@@ -4469,7 +4470,7 @@ Add the following to your =.emacs=
 
 #+header: :tangle no
 #+begin_src emacs-lisp
-(add-to-list 'load-path (expand-file-name "~/git/org-mode/contrib/lisp"))
+;(add-to-list 'load-path (expand-file-name "~/git/org-mode/contrib/lisp"))
 
 (require 'org-checklist)
 #+end_src
@@ -4480,9 +4481,9 @@ Add the following to your =.emacs=
 ;; can override the document path by setting your path in the variable
 ;; org-mode-user-contrib-lisp-path
 ;;
-(if (boundp 'org-mode-user-contrib-lisp-path)
-    (add-to-list 'load-path org-mode-user-contrib-lisp-path)
-  (add-to-list 'load-path (expand-file-name "~/git/org-mode/contrib/lisp")))
+;(if (boundp 'org-mode-user-contrib-lisp-path)
+;    (add-to-list 'load-path org-mode-user-contrib-lisp-path)
+;  (add-to-list 'load-path (expand-file-name "~/git/org-mode/contrib/lisp")))
 
 (require 'org-checklist)
 #+end_src
@@ -5054,7 +5055,7 @@ These are my settings for habit tracking.
 #+header: :tangle yes
 #+begin_src emacs-lisp
 ; Enable habit tracking (and a bunch of other modules)
-(setq org-modules (quote (org-bbdb
+(setq org-modules (quote (;org-bbdb
                           org-bibtex
                           org-crypt
                           org-gnus
@@ -5559,7 +5560,7 @@ date) system versions.
 
 #+header: :tangle yes
 #+begin_src emacs-lisp
-(add-to-list 'Info-default-directory-list "~/git/org-mode/doc")
+;(add-to-list 'Info-default-directory-list "~/git/org-mode/doc")
 #+end_src
 ** Prefer future dates or not?
 :PROPERTIES:
@@ -5737,8 +5738,8 @@ Here's the smex setup I use
 (require 'smex)
 (smex-initialize)
 
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "C-x x") 'smex)
+;(global-set-key (kbd "M-x") 'smex)
+;(global-set-key (kbd "C-x x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 #+end_src
 ** Use Emacs bookmarks for fast navigation
@@ -5989,7 +5990,7 @@ creating structured email messages.
 #+begin_src emacs-lisp
 (add-hook 'message-mode-hook 'orgstruct++-mode 'append)
 (add-hook 'message-mode-hook 'turn-on-auto-fill 'append)
-(add-hook 'message-mode-hook 'bbdb-define-all-aliases 'append)
+;(add-hook 'message-mode-hook 'bbdb-define-all-aliases 'append)
 (add-hook 'message-mode-hook 'orgtbl-mode 'append)
 (add-hook 'message-mode-hook 'turn-on-flyspell 'append)
 (add-hook 'message-mode-hook
