@@ -1,0 +1,1 @@
+This is my current org workflow.  It started out as a clone of the literate version of Bernt Hansen's, documented [here](http://doc.norang.ca/org-mode.html).
