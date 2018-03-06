@@ -149,7 +149,7 @@ files.
 ;;;
 ;;; Org Mode
 ;;;
-; (add-to-list 'load-path (expand-file-name "~/git/org-mode/lisp"))
+; (add-to-list 'load-path (expand-file-name "~/h/org-mode/lisp"))
 (add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))
 (require 'org)
 ;;
@@ -4472,7 +4472,7 @@ Add the following to your =.emacs=
 #+begin_src emacs-lisp
 ;(add-to-list 'load-path (expand-file-name "~/git/org-mode/contrib/lisp"))
 
-(require 'org-checklist)
+;(require 'org-checklist)
 #+end_src
 
 #+header: :tangle yes
@@ -4481,9 +4481,9 @@ Add the following to your =.emacs=
 ;; can override the document path by setting your path in the variable
 ;; org-mode-user-contrib-lisp-path
 ;;
-;(if (boundp 'org-mode-user-contrib-lisp-path)
-;    (add-to-list 'load-path org-mode-user-contrib-lisp-path)
-;  (add-to-list 'load-path (expand-file-name "~/git/org-mode/contrib/lisp")))
+(if (boundp 'org-mode-user-contrib-lisp-path)
+    (add-to-list 'load-path org-mode-user-contrib-lisp-path)
+  (add-to-list 'load-path (expand-file-name "~/git/org-mode/contrib/lisp")))
 
 (require 'org-checklist)
 #+end_src
@@ -5734,7 +5734,6 @@ because IDO completion is so easy.
 Here's the smex setup I use
 #+header: :tangle yes
 #+begin_src emacs-lisp
-(add-to-list 'load-path (expand-file-name "~/.emacs.d"))
 (require 'smex)
 (smex-initialize)
 
