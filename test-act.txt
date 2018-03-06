@@ -1,0 +1,12 @@
+
+@startuml
+skinparam activity {
+BackgroundColor<<New>> Cyan
+}
+
+title test - 
+note left: test
+(*) --> "test"
+--> (*)
+
+@enduml
