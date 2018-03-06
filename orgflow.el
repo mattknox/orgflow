@@ -370,9 +370,11 @@ as the default task."
 
 (defvar bh/organization-task-id "eb155a82-92b2-4f25-a3c6-0304591af2f9")
 
+(defvar mattknox/default-task-id "BE08C555-0A63-4DEE-B9FC-5E3B405E2A63")
+
 (defun bh/clock-in-organization-task-as-default ()
   (interactive)
-  (org-with-point-at (org-id-find bh/organization-task-id 'marker)
+  (org-with-point-at (org-id-find mattknox/default-task-id 'marker)
     (org-clock-in '(16))))
 
 (defun bh/clock-out-maybe ()
