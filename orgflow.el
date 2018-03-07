@@ -81,7 +81,7 @@
 
 (setq org-todo-keywords
       (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-              (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)" "PHONE" "MEETING"))))
+              (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)" "PHONE" "MEETING" "BREAK"))))
 
 (setq org-todo-keyword-faces
       (quote (("TODO" :foreground "red" :weight bold)
@@ -91,7 +91,8 @@
               ("HOLD" :foreground "magenta" :weight bold)
               ("CANCELLED" :foreground "forest green" :weight bold)
               ("MEETING" :foreground "forest green" :weight bold)
-              ("PHONE" :foreground "forest green" :weight bold))))
+              ("PHONE" :foreground "forest green" :weight bold)
+              ("BREAK" :foreground "forest green" :weight bold))))
 
 (setq org-use-fast-todo-selection t)
 
@@ -128,6 +129,8 @@
                "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t)
               ("p" "Phone call" entry (file "~/org/refile.org")
                "* PHONE %? :PHONE:\n%U" :clock-in t :clock-resume t)
+              ("b" "Break" entry (file "~/org/refile.org")
+               "* BREAK %? :BREAK:\n%U" :clock-in t :clock-resume t)
               ("h" "Habit" entry (file "~/org/refile.org")
                "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"%<<%Y-%m-%d %a .+1d/3d>>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
 
@@ -1095,13 +1098,13 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
 
 (defvar bh/plantuml-if-count 0)
 
-(defun bh/plantuml-if () 
+(defun bh/plantuml-if ()
   (incf bh/plantuml-if-count)
   (number-to-string bh/plantuml-if-count))
 
 (defvar bh/plantuml-loop-count 0)
 
-(defun bh/plantuml-loop () 
+(defun bh/plantuml-loop ()
   (incf bh/plantuml-loop-count)
   (number-to-string bh/plantuml-loop-count))
 
@@ -1114,7 +1117,7 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
 
 (define-skeleton skel-org-block-plantuml-activity-if
   "Insert a org plantuml block activity if statement"
-  "" 
+  ""
   "if \"\" then\n"
   "  -> [condition] ==IF" (setq ifn (bh/plantuml-if)) "==\n"
   "  --> ==IF" ifn "M1==\n"
@@ -1127,7 +1130,7 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
 
 (define-skeleton skel-org-block-plantuml-activity-for
   "Insert a org plantuml block activity for statement"
-  "Loop for each: " 
+  "Loop for each: "
   "--> ==LOOP" (setq loopn (bh/plantuml-loop)) "==\n"
   "note left: Loop" loopn ": For each " str "\n"
   "--> ==ENDLOOP" loopn "==\n"
@@ -1821,7 +1824,7 @@ Late deadlines first, then scheduled, then non-late deadlines"
 (add-hook 'org-mode-hook 'turn-on-flyspell 'append)
 
 ;; Disable keys in org-mode
-;;    C-c [ 
+;;    C-c [
 ;;    C-c ]
 ;;    C-c ;
 ;;    C-c C-x C-q  cancelling the clock (we never want this)

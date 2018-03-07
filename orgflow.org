@@ -489,7 +489,7 @@ Here are my =TODO= state keywords and colour settings:
 #+begin_src emacs-lisp
 (setq org-todo-keywords
       (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-              (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)" "PHONE" "MEETING"))))
+              (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)" "PHONE" "MEETING" "BREAK"))))
 
 (setq org-todo-keyword-faces
       (quote (("TODO" :foreground "red" :weight bold)
@@ -499,7 +499,8 @@ Here are my =TODO= state keywords and colour settings:
               ("HOLD" :foreground "magenta" :weight bold)
               ("CANCELLED" :foreground "forest green" :weight bold)
               ("MEETING" :foreground "forest green" :weight bold)
-              ("PHONE" :foreground "forest green" :weight bold))))
+              ("PHONE" :foreground "forest green" :weight bold)
+              ("BREAK" :foreground "forest green" :weight bold))))
 #+end_src
 *** Task States
 :PROPERTIES:
@@ -697,6 +698,7 @@ things:
 - A new note (n)
 - An interruption (j)
 - A new habit (h)
+- A break (b)
 
 and pick the appropriate capture task.
 
@@ -726,6 +728,8 @@ Here is my setup for org-capture
                "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t)
               ("p" "Phone call" entry (file "~/org/refile.org")
                "* PHONE %? :PHONE:\n%U" :clock-in t :clock-resume t)
+              ("b" "Break" entry (file "~/org/refile.org")
+               "* BREAK %? :BREAK:\n%U" :clock-in t :clock-resume t)
               ("h" "Habit" entry (file "~/org/refile.org")
                "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"%<<%Y-%m-%d %a .+1d/3d>>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
 #+end_src
@@ -4944,7 +4948,7 @@ My =org-todo-keywords= are set as follows:
 #+begin_src emacs-lisp
 (setq org-todo-keywords
       (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-              (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)" "PHONE" "MEETING"))))
+              (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)" "PHONE" "MEETING" "BREAK"))))
 #+end_src
 
 This adds a log entry whenever a task moves to any of the following states:
