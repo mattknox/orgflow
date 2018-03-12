@@ -1,4 +1,3 @@
-
 ;; The following setting is different from the document so that you
 ;; can override the document path by setting your path in the variable
 ;; org-mode-user-lisp-path
@@ -121,7 +120,7 @@
                "* NEXT Respond to %:from on %:subject\nSCHEDULED: %t\n%U\n%a\n" :clock-in t :clock-resume t :immediate-finish t)
               ("n" "note" entry (file "~/org/refile.org")
                "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)
-              ("j" "Journal" entry (file+datetree "~/git/org/diary.org")
+              ("j" "Journal" entry (file+datetree "~/org/diary.org")
                "* %?\n%U\n" :clock-in t :clock-resume t)
               ("w" "org-protocol" entry (file "~/org/refile.org")
                "* TODO Review %c\n%U\n" :immediate-finish t)
@@ -806,21 +805,21 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
       (org-display-inline-images)
     (error nil)))
 
-;; (org-babel-do-load-languages
-;;  (quote org-babel-load-languages)
-;;  (quote ((emacs-lisp . t)
-;;          (dot . t)
-;;          (ditaa . t)
-;;          (R . t)
-;;          (python . t)
-;;          (ruby . t)
-;;          (gnuplot . t)
-;;          (clojure . t)
-;;          (sh . t)
-;;          (ledger . t)
-;;          (org . t)
-;;          (plantuml . t)
-;;          (latex . t))))
+;;(org-babel-do-load-languages
+;; (quote org-babel-load-languages)
+;; (quote ((emacs-lisp . t)
+;;         (dot . t)
+;;         (ditaa . t)
+;;         (R . t)
+;;         (python . t)
+;;         (ruby . t)
+;;         (gnuplot . t)
+;;         (clojure . t)
+;;         (sh . t)
+;;         (ledger . t)
+;;         (org . t)
+;;         (plantuml . t)
+;;         (latex . t))))
 
 ; Do not prompt to confirm evaluation
 ; This may be dangerous - make sure you understand the consequences
@@ -1531,9 +1530,9 @@ Late deadlines first, then scheduled, then non-late deadlines"
 ;; can override the document path by setting your path in the variable
 ;; org-mode-user-contrib-lisp-path
 ;;
-(if (boundp 'org-mode-user-contrib-lisp-path)
-    (add-to-list 'load-path org-mode-user-contrib-lisp-path)
-  (add-to-list 'load-path (expand-file-name "~/git/org-mode/contrib/lisp")))
+;;(if (boundp 'org-mode-user-contrib-lisp-path)
+;;    (add-to-list 'load-path org-mode-user-contrib-lisp-path)
+;;  (add-to-list 'load-path (expand-file-name "~/git/org-mode/contrib/lisp")))
 
 (require 'org-checklist)
 
