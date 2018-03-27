@@ -1,11 +1,10 @@
 #!/usr/bin/env ruby
 
-PATHLIST = ENV["AUTOCOMMIT_PATHS"].to_s
+PATHLIST = ENV["AUTOCOMMIT_PATHS"] || "~/org"
 
-return if PATHLIST.empty?
+exit(0) if PATHLIST.empty?
 
 PATHLIST.split.each do |path|
-  puts "path: #{path}"
   fn = File.expand_path(path)
   if fn && File.exists?(fn) && File.directory?(fn)
     Dir.chdir(fn)
